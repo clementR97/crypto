@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import {cryptoApi} from '../services/cryptoApi.tsx';
-import type { Crypto } from "../types/crypto";
+import type { Crypto } from "../types/crypto.tsx";
 
 interface UseCryptosReturn{
     cryptos: Crypto[];
