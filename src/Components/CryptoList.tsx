@@ -19,7 +19,10 @@ import {Table,
   }
 
   export const CryptoList: React.FC<CryptoListProps> = ({cryptos, onCryptoClick}) =>{
-    const formatPrice = (price:number)=>{
+    const formatPrice = (price:number |null | undefined)=>{
+        if(price === null || price === undefined){
+            return 'N/A'
+        }
         return price.toLocaleString('fr-FR',{
             style: 'currency',
             currency: 'EUR',
@@ -27,12 +30,15 @@ import {Table,
             maximumFractionDigits: price <1 ? 6: 2,
         });
     };
-    const formatLargeNumber = (num: number)=>{
+    const formatLargeNumber = (num: number | null | undefined): string =>{
+        if(num === null || num === undefined || isNaN(num)){
+            return 'N/A';
+        }
         if(num >= 1_000_000_000){
             return `${(num / 1_000_000_000).toFixed(2)}B €`;
         }
         if(num >= 1_000_000){
-            return `${(num / 1_000_000).toFixed(2)}B €`;
+            return `${(num / 1_000_000).toFixed(2)}M €`;
         }
         return `${num.toLocaleString('fr-FR')} €`;
     };
@@ -51,8 +57,11 @@ import {Table,
                 </TableHead>
                 <TableBody>
                     {cryptos.map((crypto)=>{
+                        const changeValue = crypto.price_change_percentage_24h ?? 0;
                         const isPositive = crypto.price_change_percentage_24h >= 0;
                         const changeColor = isPositive ? '#4caf50' : '#f44336';
+                        const hasValideChange = crypto.price_change_percentage_24h !== null &&
+                                                crypto.price_change_percentage_24h !== undefined;
                         return(
                             <TableRow
                             key={crypto.id}
@@ -65,7 +74,7 @@ import {Table,
                                 {/* Rang */}
                                 <TableCell>
                                     <Typography variant="body2" fontWeight="bold">
-                                        {crypto.markert_cap_rank}
+                                        {crypto.markert_cap_rank || 'N/A'}
                                     </Typography>
                                 </TableCell>
 
@@ -96,9 +105,10 @@ import {Table,
                                 </TableCell>
                                 {/* variation 24h */}
                                 <TableCell align="right">
+                                    {hasValideChange ?(
                                     <Chip
                                     icon={isPositive ? <TrendingUp/> : <TrendingDown/>}
-                                    label={`${isPositive ? '+' : ''}${crypto.price_change_percentage_24h.toFixed(2)}%`}
+                                    label={`${isPositive ? '+' : ''}${changeValue.toFixed(2)}%`}
                                     size="small"
                                     sx={{
                                         backgroundColor: isPositive ? 'rgba(76, 175, 80, 0.1)' : 'rgba(244, 67, 54, 0.1)',
@@ -106,6 +116,12 @@ import {Table,
                                         fontWeight: "bold",
                                     }}
                                     />
+                                ):(
+                                    <Typography variant="body2" color="text.secondary">
+                                        N/A
+                                    </Typography>
+                                )}
+
                                 </TableCell>
                                 {/* Market Cap */}
                                 <TableCell align="right">
