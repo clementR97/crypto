@@ -29,7 +29,7 @@ function App() {
   return (
     <>
       {/* Header */}
-      <AppBar position="static" sx={{background:'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'}}>
+      <AppBar position="static" sx={{background:'linear-gradient(135deg, #61a5c2 0%, #ffd60a 100%)'}}>
         <Toolbar>
           <TrendingUp sx={{mr:1, fontSize:28}}/>
           <Typography variant="h5" component="div" sx={{flexGrow:1, fontWeight:"bold"}}>

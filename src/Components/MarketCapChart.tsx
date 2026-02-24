@@ -27,16 +27,16 @@ export const MarketCapChart: React.FC<MarketCapChartProps> = ({
         const topCryptos = cryptos.slice(0, topN);
         // Couleurs pour chaque crypto
     const colors = [
-        '#FF6384', // Rose
-        '#36A2EB', // Bleu
-        '#FFCE56', // Jaune
-        '#4BC0C0', // Turquoise
-        '#9966FF', // Violet
-        '#FF9F40', // Orange
-        '#FF6384', // Rose clair
-        '#C9CBCF', // Gris
-        '#4BC0C0', // Turquoise clair
-        '#FF6384', // Rose foncé
+        '#f94144', 
+        '#f3722c', 
+        '#f8961e', 
+        '#f9c74f', 
+        '#90be6d', 
+        '#43aa8b', 
+        '#577590', 
+        '#78290f', 
+        '#ffecd1', 
+        '#abc4ff', 
       ];
       return{
         labels: topCryptos.map((crypto)=>crypto.name),
