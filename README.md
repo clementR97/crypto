@@ -2,7 +2,7 @@
 
 ![React](https://img.shields.io/badge/React-18.x-61DAFB?logo=react&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white)
-![Material-UI](https://img.shields.io/badge/Material--UI-5.x-007FFF?logo=mui&logoColor=white)
+![Material-UI](https://img.shields.io/badge/Material--UI-7.x-007FFF?logo=mui&logoColor=white)
 ![Chart.js](https://img.shields.io/badge/Chart.js-4.x-FF6384?logo=chartdotjs&logoColor=white)
 ![Deployed](https://img.shields.io/badge/Status-Deployed-success)
 
